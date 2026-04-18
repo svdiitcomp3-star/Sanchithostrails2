@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body{
+ margin:0;
+ background:black;
+ color:#00eaff;
+ font-family:Arial;
+ overflow:hidden;
+}
+
+/* SCREEN FIX */
+.container{
+ height:100vh;
+ display:flex;
+ flex-direction:column;
+}
+
+/* TIME */
+.time{
+ font-size:40px;
+ padding:20px;
+}
+
+/* GRID */
+.apps{
+ flex:1;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px;
+ padding:15px;
+}
+
+/* APP ICON */
+.app{
+ background:#111;
+ border:1px solid #00eaff;
+ border-radius:20px;
+ text-align:center;
+ padding:20px;
+}
+
+/* ICON */
+.app i{
+ font-size:28px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="time" id="time"></div>
+
+<div class="apps">
+  <div class="app" onclick="go('form.html')"><i class="fa-solid fa-file"></i><p>Form</p></div>
+  <div class="app" onclick="go('calculator.html')"><i class="fa-solid fa-calculator"></i><p>Calc</p></div>
+  <div class="app" onclick="go('notes.html')"><i class="fa-solid fa-note-sticky"></i><p>Notes</p></div>
+  <div class="app" onclick="go('chat.html')"><i class="fa-brands fa-whatsapp"></i><p>Chat</p></div>
+</div>
+
+</div>
+
+<script>
+function go(p){window.location=p;}
+
+setInterval(()=>{
+ let d=new Date();
+ time.innerHTML=d.getHours()+":"+("0"+d.getMinutes()).slice(-2);
+},1000);
+</script>
+
+</body>
+</html>
