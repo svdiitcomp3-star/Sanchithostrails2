@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lock</title>
+
+<style>
+body{
+ margin:0;
+ background:black;
+ color:#00eaff;
+ font-family:Arial;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ height:100vh;
+ overflow:hidden;
+}
+
+/* CLOCK */
+#time{
+ font-size:60px;
+}
+
+/* SWIPE BAR */
+.swipe{
+ width:80%;
+ height:50px;
+ border:1px solid #00eaff;
+ border-radius:30px;
+ position:relative;
+ overflow:hidden;
+}
+
+.slider{
+ width:50px;
+ height:50px;
+ background:#00eaff;
+ border-radius:50%;
+ position:absolute;
+ left:0;
+ top:0;
+}
+
+/* LOGIN */
+input{
+ display:block;
+ margin:10px;
+ padding:10px;
+ width:200px;
+ background:black;
+ border:1px solid #00eaff;
+ color:#00eaff;
+}
+</style>
+</head>
+
+<body>
+
+<div id="time"></div>
+
+<div class="swipe">
+  <div class="slider" id="slider"></div>
+</div>
+
+<input id="user" placeholder="Username">
+<input id="pass" type="password" placeholder="Password">
+
+<button onclick="login()">Unlock</button>
+
+<script>
+// clock
+setInterval(()=>{
+ let d=new Date();
+ time.innerHTML=d.getHours()+":"+("0"+d.getMinutes()).slice(-2);
+},1000);
+
+// SAFE SWIPE
+let slider=document.getElementById("slider");
+let startX=0;
+
+slider.addEventListener("touchstart",e=>{
+ startX=e.touches[0].clientX;
+});
+
+slider.addEventListener("touchmove",e=>{
+ let move=e.touches[0].clientX - startX;
+ if(move>0 && move<200){
+   slider.style.left=move+"px";
+ }
+ if(move>150){
+   unlock();
+ }
+});
+
+// unlock
+function unlock(){
+ window.location="home.html";
+}
+
+// login
+function login(){
+ if(user.value==="admin" && pass.value==="AI123"){
+   unlock();
+ } else alert("Wrong");
+}
+</script>
+
+</body>
+</html>
