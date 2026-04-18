@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notes</title>
+
+<style>
+body{
+ margin:0;
+ background:black;
+ color:#00eaff;
+ font-family:Arial;
+ display:flex;
+ flex-direction:column;
+ height:100vh;
+}
+
+.top{
+ padding:10px;
+}
+
+textarea{
+ flex:1;
+ margin:10px;
+ background:black;
+ color:#00eaff;
+ border:1px solid #00eaff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="top">
+<button onclick="go()">⬅ Back</button>
+</div>
+
+<textarea placeholder="Write notes..."></textarea>
+
+<script>
+function go(){window.location="home.html";}
+</script>
+
+</body>
+</html>
