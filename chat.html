@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat</title>
+
+<style>
+body{
+ margin:0;
+ background:black;
+ color:#00eaff;
+ font-family:Arial;
+ display:flex;
+ flex-direction:column;
+ height:100vh;
+}
+
+.top{
+ padding:10px;
+}
+
+#chat{
+ flex:1;
+ overflow:auto;
+ border-top:1px solid #00eaff;
+ border-bottom:1px solid #00eaff;
+ padding:10px;
+}
+
+.bottom{
+ display:flex;
+}
+
+input{
+ flex:1;
+ padding:10px;
+ background:black;
+ border:1px solid #00eaff;
+ color:#00eaff;
+}
+
+button{
+ padding:10px;
+ background:black;
+ border:1px solid #00eaff;
+ color:#00eaff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="top">
+<button onclick="go()">⬅ Back</button>
+</div>
+
+<div id="chat"></div>
+
+<div class="bottom">
+<input id="msg" placeholder="Type message...">
+<button onclick="send()">Send</button>
+</div>
+
+<script>
+function go(){window.location="home.html";}
+
+function send(){
+ let input=document.getElementById("msg");
+ let chat=document.getElementById("chat");
+ let m=input.value.trim();
+
+ if(m==="") return;
+
+ chat.innerHTML += "<p><b>You:</b> "+m+"</p>";
+
+ let r="🤖 I am Sanchith AI";
+
+ if(m.includes("hi")) r="Hello 👋";
+ else if(m.includes("time")) r=new Date().toLocaleTimeString();
+ else if(m.match(/[0-9+\-*/]/)){
+   try{ r=eval(m); } catch { r="Error"; }
+ }
+
+ chat.innerHTML += "<p><b>AI:</b> "+r+"</p>";
+
+ chat.scrollTop = chat.scrollHeight;
+ input.value="";
+}
+</script>
+
+</body>
+</html>
